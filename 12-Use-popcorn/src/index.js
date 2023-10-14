@@ -2,20 +2,24 @@ import React, { useState } from 'react'
 import ReactDOM from 'react-dom/client'
 import StarRating from './StarRating'
 import './index.css'
+import App from './App'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <React.StrictMode>
-    <StarRating
+    <App />
+
+    {/* Sample usage of star rating component */}
+    {/* <StarRating
       maxRating={'akjsandjk'}
       messages={['Terrible', 'Bad', 'Just fine', 'Good', 'Amazing']}
-    />
-    <StarRating size={24} color='red' defaultRating={3} />
-    <Test />
+    /> */}
+    {/* <StarRating size={24} color='red' defaultRating={3} /> */}
+    {/* <Test /> */}
   </React.StrictMode>
 )
 
-function Test() {
+/* function Test() {
   const [movieRating, setMovieRating] = useState(0)
 
   return (
@@ -24,4 +28,4 @@ function Test() {
       <p>This movie was rated {movieRating} stars</p>
     </div>
   )
-}
+} */
