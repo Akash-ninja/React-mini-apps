@@ -1,15 +1,31 @@
+import { useEffect, useRef } from 'react'
+
 export default function Search({ query, setQuery }) {
-  /*
-      1. Not a convention with React - like its not in Declarative way of React
-      2. Not in line with rest of code
-      3. Not want to add event listeners manaually like this
-      4. Having to add classes or ids just for the purpose of selecting - Not ideal
-      4. If the code re-runs then we are selecting the element over and over again - Not Ideal
-   */
-  /* useEffect(function () {
-    const el = document.querySelector('.search')
-    el.focus()
-  }, []) */
+  const inputEl = useRef(null)
+
+  useEffect(
+    function () {
+      function callback(e) {
+        /* if focused element is already selected then don't run below code */
+        if (document.activeElement === inputEl.current) {
+          return
+        }
+
+        if (e.code === 'Enter') {
+          inputEl.current.focus()
+          setQuery('')
+        }
+      }
+
+      document.addEventListener('keydown', callback)
+
+      return function () {
+        /* after reloading also, search bar is focused after Enter is pressed */
+        document.addEventListener('keydown', callback)
+      }
+    },
+    [setQuery]
+  )
 
   return (
     <input
@@ -18,6 +34,7 @@ export default function Search({ query, setQuery }) {
       placeholder='Search movies...'
       value={query}
       onChange={(e) => setQuery(e.target.value)}
+      ref={inputEl}
     />
   )
 }
