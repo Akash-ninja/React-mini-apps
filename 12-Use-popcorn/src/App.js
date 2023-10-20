@@ -10,6 +10,7 @@ import MovieList from './presentational/MovieList'
 import WatchedSummary from './presentational/WatchedSummary'
 import WatchedMoviesList from './presentational/WatchedMoviesList'
 import { useMovies } from './useMovies'
+import { useLocalStorageState } from './useLocalStorageState'
 
 /* const tempMovieData = [
   {
@@ -62,21 +63,11 @@ const KEY = '8bde1356'
 
 export default function App() {
   const [query, setQuery] = useState('')
-
   const [selectedId, setSelectedId] = useState(null)
-  const [watched, setWatched] = useState(function () {
-    const storedValue = localStorage.getItem('watched')
-    return JSON.parse(storedValue)
-  })
+
+  const [watched, setWatched] = useLocalStorageState([], 'watched')
 
   const { movies, isLoading, error } = useMovies(query)
-
-  useEffect(
-    function () {
-      localStorage.setItem('watched', JSON.stringify(watched))
-    },
-    [watched]
-  )
 
   function handleSelectMovie(id) {
     setSelectedId((selectedId) => (id === selectedId ? null : id))
