@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import StarRating from './StarRating'
-import Navbar from './presentational/Navbar'
+import Navbar from './structural/Navbar'
 import Search from './presentational/Search'
 import Loader from './presentational/Loader'
 import Main from './presentational/Main'

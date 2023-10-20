@@ -1,4 +1,4 @@
-import Logo from './Logo'
+import Logo from '../presentational/Logo'
 
 // Structural component
 function Navbar({ children }) {
