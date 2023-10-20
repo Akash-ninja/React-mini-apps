@@ -1,31 +1,16 @@
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
+import { useKey } from '../useKey'
 
 export default function Search({ query, setQuery }) {
   const inputEl = useRef(null)
 
-  useEffect(
-    function () {
-      function callback(e) {
-        /* if focused element is already selected then don't run below code */
-        if (document.activeElement === inputEl.current) {
-          return
-        }
-
-        if (e.code === 'Enter') {
-          inputEl.current.focus()
-          setQuery('')
-        }
-      }
-
-      document.addEventListener('keydown', callback)
-
-      return function () {
-        /* after reloading also, search bar is focused after Enter is pressed */
-        document.addEventListener('keydown', callback)
-      }
-    },
-    [setQuery]
-  )
+  useKey('Enter', function () {
+    if (document.activeElement === inputEl.current) {
+      return
+    }
+    inputEl.current.focus()
+    setQuery('')
+  })
 
   return (
     <input
