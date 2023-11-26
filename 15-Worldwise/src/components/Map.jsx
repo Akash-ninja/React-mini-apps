@@ -12,9 +12,9 @@ import styles from './Map.module.css'
 import { useCities } from '../contexts/CitiesContext'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { useGeolocation } from '../hooks/useGeoLocation'
+import { useUrlPosition } from '../hooks/useUrlPosition'
 
 function Map() {
-  const [searchParams] = useSearchParams()
   const [mapPosition, setMapPosition] = useState([40, 0])
   const { cities } = useCities()
   const {
@@ -22,9 +22,7 @@ function Map() {
     position: geolocationPosition,
     getPosition,
   } = useGeolocation()
-
-  const mapLat = searchParams.get('lat')
-  const mapLng = searchParams.get('lng')
+  const [mapLat, mapLng] = useUrlPosition()
 
   useEffect(
     function () {
@@ -48,6 +46,7 @@ function Map() {
           {isLoadingPosition ? 'Loading...' : 'Use your position'}
         </Button>
       )}
+
       <MapContainer
         center={mapPosition}
         zoom={6}
