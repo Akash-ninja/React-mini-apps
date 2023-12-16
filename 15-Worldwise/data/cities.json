@@ -25,16 +25,40 @@
       "id": 98443197
     },
     {
-      "cityName": "Katihar",
+      "cityName": "Nanguneri",
       "country": "India",
       "emoji": "🇮🇳",
-      "date": "2023-11-26T08:23:39.204Z",
-      "notes": "My Phuaa home",
+      "date": "2023-12-12T19:55:40.931Z",
+      "notes": "sdada",
       "position": {
-        "lat": "25.60190226111573",
-        "lng": "87.60498046875"
+        "lat": "8.5962845947937",
+        "lng": "77.60742187500001"
       },
       "id": 98443198
+    },
+    {
+      "cityName": "Berbere",
+      "country": "Ethiopia",
+      "emoji": "🇪🇹",
+      "date": "2023-12-12T19:55:47.806Z",
+      "notes": "sadsad",
+      "position": {
+        "lat": "6.761153275778076",
+        "lng": "40.34179687500001"
+      },
+      "id": 98443199
+    },
+    {
+      "cityName": "Town of West Turin",
+      "country": "United States of America (the)",
+      "emoji": "🇺🇸",
+      "date": "2023-12-12T19:59:01.285Z",
+      "notes": "a town in america",
+      "position": {
+        "lat": "43.58609878523269",
+        "lng": "-75.41015625"
+      },
+      "id": 98443200
     }
   ]
 }
