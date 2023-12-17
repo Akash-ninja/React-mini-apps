@@ -11,5 +11,7 @@ Typical React app -
 
 Fake authentication -
 
+No impact on 2nd and 3rd step only step-1 is changed
+
 1. Not gonna ask user credentials from an API but instead we're going to have a hard coded
     user object inside a state (context). 
