@@ -106,7 +106,7 @@ const QuizProvider = ({ children }) => {
         secondsRemaining,
         highscore,
         answer,
-        question: questions[index],
+        questions,
         index,
         status,
         dispatch,
