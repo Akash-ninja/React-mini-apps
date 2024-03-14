@@ -1,0 +1,17 @@
+
+Typical React app -
+
+1. Get the user's email and password from a login form and 
+    check with an API endpoint whether password is correct.
+
+2. If the creds are correct then we redirect the user to our main application 
+    and save the user object in our state.
+
+3. Protect the app from unauthorized access
+
+Fake authentication -
+
+No impact on 2nd and 3rd step only step-1 is changed
+
+1. Not gonna ask user credentials from an API but instead we're going to have a hard coded
+    user object inside a state (context). 
