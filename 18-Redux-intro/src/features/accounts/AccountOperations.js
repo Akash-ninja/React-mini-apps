@@ -16,7 +16,7 @@ function AccountOperations() {
 
   function handleDeposit() {
     if (!depositAmount) return
-    dispatch(deposit(depositAmount))
+    dispatch(deposit(depositAmount, currency))
     setDepositAmount('')
   }
 
@@ -55,6 +55,7 @@ function AccountOperations() {
             <option value='USD'>US Dollar</option>
             <option value='EUR'>Euro</option>
             <option value='GBP'>British Pound</option>
+            <option value='INR'>Indian Rupees</option>
           </select>
 
           <button onClick={handleDeposit}>Deposit {depositAmount}</button>
