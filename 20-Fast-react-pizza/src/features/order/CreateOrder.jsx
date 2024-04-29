@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Form, redirect, useActionData, useNavigation } from 'react-router-dom'
 import { createOrder } from '../../services/apiRestaurant'
 import Button from '../../ui/Button'
@@ -7,6 +7,7 @@ import { clearCart, getCart, getTotalcartPrice } from '../cart/cartSlice'
 import EmptyCart from '../cart/EmptyCart'
 import { formatCurrency } from '../../utils/helpers'
 import store from '../../store'
+import { fetchAddress } from '../user/userSlice'
 
 // https://uibakery.io/regex-library/phone-number
 const isValidPhone = (str) =>
@@ -16,6 +17,7 @@ const isValidPhone = (str) =>
 
 function CreateOrder() {
   const [withPriority, setWithPriority] = useState(false)
+  const dispatch = useDispatch()
 
   const navigate = useNavigation()
   const isSubmitting = navigate.state === 'submitting'
@@ -33,6 +35,8 @@ function CreateOrder() {
   return (
     <div className='px-4 py-6'>
       <h2 className='mb-8 text-xl font-semibold'>Ready to order? Let`s go!</h2>
+
+      <button onClick={() => dispatch(fetchAddress())}>Get position</button>
 
       <Form method='POST'>
         <div className='mb-5 flex flex-col gap-2 sm:flex-row sm:items-center'>
@@ -117,6 +121,7 @@ export async function action({ request }) {
 
   const newOrder = await createOrder(order)
 
+  // Not to overuse
   store.dispatch(clearCart())
 
   return redirect(`/order/${newOrder.id}`)
