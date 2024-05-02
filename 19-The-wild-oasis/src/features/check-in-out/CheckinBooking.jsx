@@ -1,42 +1,42 @@
-import { useEffect, useState } from 'react';
-import { formatCurrency } from 'utils/helpers';
+import { useEffect, useState } from "react"
+import { formatCurrency } from "utils/helpers"
 
-import Spinner from 'ui/Spinner';
-import Row from 'ui/Row';
-import Heading from 'ui/Heading';
-import ButtonGroup from 'ui/ButtonGroup';
-import Button from 'ui/Button';
-import ButtonText from 'ui/ButtonText';
-import Checkbox from 'ui/Checkbox';
+import Spinner from "ui/Spinner"
+import Row from "ui/Row"
+import Heading from "ui/Heading"
+import ButtonGroup from "ui/ButtonGroup"
+import Button from "ui/Button"
+import ButtonText from "ui/ButtonText"
+import Checkbox from "ui/Checkbox"
 
-import BookingDataBox from 'features/bookings/BookingDataBox';
+import BookingDataBox from "features/bookings/BookingDataBox"
 
-import { useBooking } from 'features/bookings/useBooking';
-import { useMoveBack } from 'hooks/useMoveBack';
-import { useCheckin } from './useCheckin';
+import { useBooking } from "features/bookings/useBooking"
+import { useMoveBack } from "hooks/useMoveBack"
+import { useCheckin } from "./useCheckin"
 
-import styled from 'styled-components';
-import { box } from 'styles/styles';
-import { useSettings } from 'features/settings/useSettings';
+import styled from "styled-components"
+import { box } from "styles/styles"
+import { useSettings } from "features/settings/useSettings"
 
 const Box = styled.div`
   ${box}
   padding: 2.4rem 4rem;
-`;
+`
 
 function CheckinBooking() {
-  const [confirmPaid, setConfirmPaid] = useState(false);
-  const [addBreakfast, setAddBreakfast] = useState(false);
+  const [confirmPaid, setConfirmPaid] = useState(false)
+  const [addBreakfast, setAddBreakfast] = useState(false)
 
-  const { booking, isLoading } = useBooking();
-  const { mutate: checkin, isLoading: isCheckingIn } = useCheckin();
-  const moveBack = useMoveBack();
-  const { isLoading: isLoadingSettings, settings } = useSettings();
+  const { booking, isLoading } = useBooking()
+  const { mutate: checkin, isLoading: isCheckingIn } = useCheckin()
+  const moveBack = useMoveBack()
+  const { isLoading: isLoadingSettings, settings } = useSettings()
 
   // Can't use as initial state, because booking will still be loading
-  useEffect(() => setConfirmPaid(booking?.isPaid ?? false), [booking]);
+  useEffect(() => setConfirmPaid(booking?.isPaid ?? false), [booking])
 
-  if (isLoading || isLoadingSettings) return <Spinner />;
+  if (isLoading || isLoadingSettings) return <Spinner />
 
   const {
     id: bookingId,
@@ -45,13 +45,12 @@ function CheckinBooking() {
     numGuests,
     hasBreakfast,
     numNights,
-  } = booking;
+  } = booking
 
-  const optionalBreakfastPrice =
-    numNights * settings.breakfastPrice * numGuests;
+  const optionalBreakfastPrice = numNights * settings.breakfastPrice * numGuests
 
   function handleCheckin() {
-    if (!confirmPaid) return;
+    if (!confirmPaid) return
 
     if (addBreakfast)
       checkin({
@@ -61,8 +60,8 @@ function CheckinBooking() {
           extrasPrice: optionalBreakfastPrice,
           totalPrice: totalPrice + optionalBreakfastPrice,
         },
-      });
-    else checkin({ bookingId, breakfast: {} });
+      })
+    else checkin({ bookingId, breakfast: {} })
   }
 
   // We return a fragment so that these elements fit into the page's layout
@@ -81,8 +80,8 @@ function CheckinBooking() {
           <Checkbox
             checked={addBreakfast}
             onChange={() => {
-              setAddBreakfast((add) => !add);
-              setConfirmPaid(false);
+              setAddBreakfast((add) => !add)
+              setConfirmPaid(false)
             }}
             id='breakfast'
           >
@@ -99,7 +98,7 @@ function CheckinBooking() {
           disabled={isCheckingIn || confirmPaid}
           id='confirm'
         >
-          I confirm that {guests.fullName} has paid the total amount of{' '}
+          I confirm that {guests.fullName} has paid the total amount of{" "}
           {!addBreakfast
             ? formatCurrency(totalPrice)
             : `${formatCurrency(
@@ -119,7 +118,7 @@ function CheckinBooking() {
         </Button>
       </ButtonGroup>
     </>
-  );
+  )
 }
 
-export default CheckinBooking;
+export default CheckinBooking

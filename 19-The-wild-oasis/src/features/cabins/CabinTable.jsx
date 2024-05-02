@@ -1,12 +1,12 @@
 // import styled from 'styled-components';
-import CabinRow from 'features/cabins/CabinRow';
-import Spinner from 'ui/Spinner';
-import Table from 'ui/Table';
-import Menus from 'ui/Menus';
-import Empty from 'ui/Empty';
-import { useCabins } from 'features/cabins/useCabins';
-import { useSearchParams } from 'react-router-dom';
-import { Suspense } from 'react';
+import CabinRow from "features/cabins/CabinRow"
+import Spinner from "ui/Spinner"
+import Table from "ui/Table"
+import Menus from "ui/Menus"
+import Empty from "ui/Empty"
+import { useCabins } from "features/cabins/useCabins"
+import { useSearchParams } from "react-router-dom"
+import { Suspense } from "react"
 
 // v2
 // Right now this is not really reusable... But we will want to use a similar table for guests as well, but with different columns. ALSO, right now we are defining these columns in BOTH the TableHeader and the CabinRow, which is not good at all. Instead, it would be much better to simply pass the columns into the Table, and the table would give access to the columns to both the header and row. So how can we do that? Well we can again use a compound component! We don't HAVE to do it like this, there's a million ways to implement a table, also without CSS Grid, but this is what I chose
@@ -40,34 +40,34 @@ function CabinTable() {
 
   // Now, everything that's inside a Suspense will be treated as just one unit, so when just one component of the child components is currently suspended, all of them will be replaced with the fallback. We can nest multiple Suspense boundaries, and the closest one will be shown. This way, when we have a big Suspense on the top on the tree, it won't have to WAIT
 
-  const { cabins } = useCabins();
-  const [searchParams] = useSearchParams();
+  const { cabins } = useCabins()
+  const [searchParams] = useSearchParams()
 
   // if (isLoading) return <Spinner />;
   // if (!cabins) return <Empty resource={'cabins'} />;
 
   // 1) Filter
-  const filterValue = searchParams.get('discount') || 'all';
+  const filterValue = searchParams.get("discount") || "all"
 
   // This is probably not the most efficient way, but that doesn't matter
-  let filteredCabins;
-  if (filterValue === 'all') filteredCabins = cabins;
-  if (filterValue === 'no-discount')
-    filteredCabins = cabins.filter((cabin) => cabin.discount === 0);
-  if (filterValue === 'with-discount')
-    filteredCabins = cabins.filter((cabin) => cabin.discount > 0);
+  let filteredCabins
+  if (filterValue === "all") filteredCabins = cabins
+  if (filterValue === "no-discount")
+    filteredCabins = cabins.filter((cabin) => cabin.discount === 0)
+  if (filterValue === "with-discount")
+    filteredCabins = cabins.filter((cabin) => cabin.discount > 0)
 
   // 2) SortBy
-  const sortBy = searchParams.get('sortBy') || 'startDate-asc';
-  const [field, direction] = sortBy.split('-');
-  const modifier = direction === 'asc' ? 1 : -1;
+  const sortBy = searchParams.get("sortBy") || "startDate-asc"
+  const [field, direction] = sortBy.split("-")
+  const modifier = direction === "asc" ? 1 : -1
 
   // This one is better!
   // .sort((a, b) => a[field].localeCompare(b[field]) * modifier);
 
   const sortedCabins = filteredCabins.sort(
     (a, b) => (a[field] - b[field]) * modifier
-  );
+  )
 
   return (
     <Menus>
@@ -93,10 +93,10 @@ function CabinTable() {
         />
       </Table>
     </Menus>
-  );
+  )
 }
 
 // We could create yet another layer of abstraction on top of this. We could call this component just <Results>, like: Results({data, count, isLoading, columns, rowComponent}). Then <CabinTable> and ALL other tables would simply call that.
 // BUT, creating more abstractions also has a cost! More things to remember, more complex codebase to understand. Sometimes it's okay to just copy and paste instead of creating abstractions
 
-export default CabinTable;
+export default CabinTable

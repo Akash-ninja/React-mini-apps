@@ -1,12 +1,12 @@
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-import { box } from 'styles/styles';
-import Button from 'ui/Button';
-import Heading from 'ui/Heading';
-import Row from 'ui/Row';
-import Spinner from 'ui/Spinner';
-import TodayItem from '../dashboard/TodayItem';
-import { useActivityTodayStays } from './useActivityTodayStays';
+import { Link } from "react-router-dom"
+import styled from "styled-components"
+import { box } from "styles/styles"
+import Button from "ui/Button"
+import Heading from "ui/Heading"
+import Row from "ui/Row"
+import Spinner from "ui/Spinner"
+import TodayItem from "../dashboard/TodayItem"
+import { useActivityTodayStays } from "./useActivityTodayStays"
 
 const StyledToday = styled.div`
   ${box}
@@ -16,7 +16,7 @@ const StyledToday = styled.div`
   gap: 2.4rem;
   grid-column: 1 / span 2;
   padding-top: 2.4rem;
-`;
+`
 
 const TodayList = styled.ul`
   overflow: scroll;
@@ -28,17 +28,17 @@ const TodayList = styled.ul`
   }
   scrollbar-width: none;
   -ms-overflow-style: none;
-`;
+`
 
 const NoActivity = styled.p`
   text-align: center;
   font-size: 1.8rem;
   font-weight: 500;
   margin-top: 0.8rem;
-`;
+`
 
 function Today() {
-  const { isLoading, stays } = useActivityTodayStays();
+  const { isLoading, stays } = useActivityTodayStays()
 
   return (
     <StyledToday>
@@ -62,46 +62,46 @@ function Today() {
         <Spinner />
       )}
     </StyledToday>
-  );
+  )
 }
 
-export default Today;
+export default Today
 
 const OLDdata = [
   {
     id: 1,
-    status: 'unconfirmed',
-    guests: { fullName: 'Jonas Schmedtmann' },
+    status: "unconfirmed",
+    guests: { fullName: "Jonas Schmedtmann" },
     numNights: 6,
   },
   {
     id: 2,
-    status: 'unconfirmed',
-    guests: { fullName: 'Steven Miller' },
+    status: "unconfirmed",
+    guests: { fullName: "Steven Miller" },
     numNights: 1,
   },
   {
     id: 3,
-    status: 'checked-in',
-    guests: { fullName: 'John Smith' },
+    status: "checked-in",
+    guests: { fullName: "John Smith" },
     numNights: 3,
   },
   {
     id: 4,
-    status: 'unconfirmed',
-    guests: { fullName: 'Marta Schmedtmann' },
+    status: "unconfirmed",
+    guests: { fullName: "Marta Schmedtmann" },
     numNights: 14,
   },
   {
     id: 5,
-    status: 'checked-in',
-    guests: { fullName: 'Miguel Silva' },
+    status: "checked-in",
+    guests: { fullName: "Miguel Silva" },
     numNights: 5,
   },
   {
     id: 6,
-    status: 'checked-in',
-    guests: { fullName: 'Mary Williams' },
+    status: "checked-in",
+    guests: { fullName: "Mary Williams" },
     numNights: 4,
   },
-];
+]

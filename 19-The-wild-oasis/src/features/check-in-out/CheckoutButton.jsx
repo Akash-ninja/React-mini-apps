@@ -1,8 +1,8 @@
-import Button from 'ui/Button';
-import { useCheckout } from './useCheckout';
+import Button from "ui/Button"
+import { useCheckout } from "./useCheckout"
 
 function CheckoutButton({ bookingId }) {
-  const { isLoading, mutate: checkout } = useCheckout();
+  const { isLoading, mutate: checkout } = useCheckout()
 
   return (
     <Button
@@ -13,7 +13,7 @@ function CheckoutButton({ bookingId }) {
     >
       Check out
     </Button>
-  );
+  )
 }
 
-export default CheckoutButton;
+export default CheckoutButton

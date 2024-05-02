@@ -1,13 +1,13 @@
-import { useForm } from 'react-hook-form';
+import { useForm } from "react-hook-form"
 
-import { useCreateCabin } from 'features/cabins/useCreateCabin';
-import FormRow from 'ui/FormRow';
-import Input from 'ui/Input';
-import Form from 'ui/Form';
-import Button from 'ui/Button';
-import FileInput from 'ui/FileInput';
-import { useEditCabin } from './useEditCabin';
-import { Textarea } from 'ui/Textarea';
+import { useCreateCabin } from "features/cabins/useCreateCabin"
+import FormRow from "ui/FormRow"
+import Input from "ui/Input"
+import Form from "ui/Form"
+import Button from "ui/Button"
+import FileInput from "ui/FileInput"
+import { useEditCabin } from "./useEditCabin"
+import { Textarea } from "ui/Textarea"
 
 // We use react-hook-form to make working with complex and REAL-WORLD forms a lot easier. It handles stuff like user validation and errors. manages the form state for us, etc
 // Validating the user’s data passed through the form is a crucial responsibility for a developer.
@@ -15,20 +15,20 @@ import { Textarea } from 'ui/Textarea';
 
 // Receives closeModal directly from Modal
 function CreateCabinForm({ cabinToEdit, closeModal }) {
-  const { mutate: createCabin, isLoading: isCreating } = useCreateCabin();
-  const { mutate: editCabin, isLoading: isEditing } = useEditCabin();
-  const isWorking = isCreating || isEditing;
+  const { mutate: createCabin, isLoading: isCreating } = useCreateCabin()
+  const { mutate: editCabin, isLoading: isEditing } = useEditCabin()
+  const isWorking = isCreating || isEditing
 
   // For an editing session
-  const { id: editId, ...editValues } = cabinToEdit || {};
-  delete editValues.created_at;
-  const isEditSession = Boolean(editId);
+  const { id: editId, ...editValues } = cabinToEdit || {}
+  delete editValues.created_at
+  const isEditSession = Boolean(editId)
 
   // One of the key concepts in React Hook Form is to register your component into the hook. This will make its value available for both the form validation and submission.
   const { register, handleSubmit, formState, reset, getValues } = useForm({
     defaultValues: isEditSession ? editValues : {},
-  });
-  const { errors } = formState;
+  })
+  const { errors } = formState
 
   // Invoked in ALL validation passes. Here we get access to the form data
   const onSubmit = function (data) {
@@ -37,12 +37,12 @@ function CreateCabinForm({ cabinToEdit, closeModal }) {
     const options = {
       onSuccess: (data) => {
         // If this component is used OUTSIDE the Modal Context, this will return undefined, so we need to test for this
-        closeModal?.();
-        reset();
+        closeModal?.()
+        reset()
       },
-    };
+    }
 
-    const image = typeof data.image === 'object' ? data.image[0] : data.image;
+    const image = typeof data.image === "object" ? data.image[0] : data.image
 
     if (isEditSession)
       editCabin(
@@ -51,14 +51,14 @@ function CreateCabinForm({ cabinToEdit, closeModal }) {
           id: editId,
         },
         options
-      );
-    else createCabin({ ...data, image }, options);
-  };
+      )
+    else createCabin({ ...data, image }, options)
+  }
 
   // Invoked when validation fails
   const onError = function (errors) {
-    console.log('Failed validation!', errors);
-  };
+    console.log("Failed validation!", errors)
+  }
 
   // By default, validation happens the moment we submit the form, so when we call handleSubmit. From them on, validation happens on the onChange event [demonstrate]. We cah change that by passing options into useForm ('mode' and 'reValidateMode')
   // https://react-hook-form.com/api/useform
@@ -77,7 +77,7 @@ function CreateCabinForm({ cabinToEdit, closeModal }) {
           type='text'
           id='name'
           disabled={isWorking}
-          {...register('name', { required: 'This field is required' })}
+          {...register("name", { required: "This field is required" })}
         />
       </FormRow>
 
@@ -86,11 +86,11 @@ function CreateCabinForm({ cabinToEdit, closeModal }) {
           type='number'
           id='maxCapacity'
           disabled={isWorking}
-          {...register('maxCapacity', {
-            required: 'This field is required',
+          {...register("maxCapacity", {
+            required: "This field is required",
             min: {
               value: 1,
-              message: 'Capacity should be at least 1',
+              message: "Capacity should be at least 1",
             },
           })}
         />
@@ -101,11 +101,11 @@ function CreateCabinForm({ cabinToEdit, closeModal }) {
           type='number'
           id='regularPrice'
           disabled={isWorking}
-          {...register('regularPrice', {
-            required: 'This field is required',
+          {...register("regularPrice", {
+            required: "This field is required",
             min: {
               value: 1,
-              message: 'Price should be at least 1',
+              message: "Price should be at least 1",
             },
           })}
         />
@@ -117,11 +117,11 @@ function CreateCabinForm({ cabinToEdit, closeModal }) {
           id='discount'
           defaultValue={0}
           disabled={isWorking}
-          {...register('discount', {
+          {...register("discount", {
             required: "Can't be empty, make it at least 0",
             validate: (value) =>
               getValues().regularPrice >= value ||
-              'Discount should be less than regular price',
+              "Discount should be less than regular price",
           })}
         />
       </FormRow>
@@ -135,7 +135,7 @@ function CreateCabinForm({ cabinToEdit, closeModal }) {
           id='description'
           defaultValue=''
           disabled={isWorking}
-          {...register('description', { required: 'This field is required' })}
+          {...register("description", { required: "This field is required" })}
         />
       </FormRow>
 
@@ -144,9 +144,9 @@ function CreateCabinForm({ cabinToEdit, closeModal }) {
           id='image'
           accept='image/*'
           disabled={isWorking}
-          {...register('image', {
+          {...register("image", {
             // required: 'This field is required',
-            required: isEditSession ? false : 'This field is required',
+            required: isEditSession ? false : "This field is required",
 
             // VIDEO this doesn't work, so never mind about this, it's too much
             // validate: (value) =>
@@ -166,11 +166,11 @@ function CreateCabinForm({ cabinToEdit, closeModal }) {
           Cancel
         </Button>
         <Button disabled={isWorking}>
-          {isEditSession ? 'Edit cabin' : 'Create new cabin'}
+          {isEditSession ? "Edit cabin" : "Create new cabin"}
         </Button>
       </FormRow>
     </Form>
-  );
+  )
 }
 
-export default CreateCabinForm;
+export default CreateCabinForm

@@ -1,6 +1,6 @@
-import Button from 'ui/Button';
-import Modal from 'ui/Modal';
-import CreateCabinForm from './CreateCabinForm';
+import Button from "ui/Button"
+import Modal from "ui/Modal"
+import CreateCabinForm from "./CreateCabinForm"
 
 function AddCabin() {
   return (
@@ -12,7 +12,7 @@ function AddCabin() {
         <CreateCabinForm />
       </Modal.Window>
     </Modal>
-  );
+  )
 }
 
-export default AddCabin;
+export default AddCabin

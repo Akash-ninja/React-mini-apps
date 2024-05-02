@@ -1,6 +1,6 @@
-import Form from ', ../.. /ui/Form';
-import FormRow from '../../ui/FormRow';
-import Input from '../../ui/Input';
+import Form from ", ../.. /ui/Form"
+import FormRow from "../../ui/FormRow"
+import Input from "../../ui/Input"
 
 function UpdateSettingsForm() {
   return (
@@ -18,7 +18,7 @@ function UpdateSettingsForm() {
         <Input type='number' id='breakfast-price' />
       </FormRow>
     </Form>
-  );
+  )
 }
 
-export default UpdateSettingsForm;
+export default UpdateSettingsForm

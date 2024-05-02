@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { box } from 'styles/styles';
+import styled from "styled-components"
+import { box } from "styles/styles"
 
 const DashboardBox = styled.div`
   ${box}
@@ -8,6 +8,6 @@ const DashboardBox = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2.4rem;
-`;
+`
 
-export default DashboardBox;
+export default DashboardBox

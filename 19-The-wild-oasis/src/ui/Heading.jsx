@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled, { css } from "styled-components"
 
 // const test = css`
 //   text-align: center;
@@ -28,6 +28,6 @@ const Heading = styled.h1`
     `}
     
   line-height: 1.4;
-`;
+`
 
-export default Heading;
+export default Heading

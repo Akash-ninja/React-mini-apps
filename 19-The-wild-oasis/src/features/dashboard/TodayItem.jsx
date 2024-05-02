@@ -1,9 +1,9 @@
-import CheckoutButton from 'features/check-in-out/CheckoutButton';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-import Button from 'ui/Button';
-import { Flag } from 'ui/Flag';
-import Tag from 'ui/Tag';
+import CheckoutButton from "features/check-in-out/CheckoutButton"
+import { Link } from "react-router-dom"
+import styled from "styled-components"
+import Button from "ui/Button"
+import { Flag } from "ui/Flag"
+import Tag from "ui/Tag"
 
 const StyledTodayItem = styled.li`
   display: grid;
@@ -21,19 +21,19 @@ const StyledTodayItem = styled.li`
   /* &:not(:last-child) {
     border-bottom: 1px solid var(--color-grey-100);
   } */
-`;
+`
 
 const Guest = styled.div`
   font-weight: 500;
-`;
+`
 
 function TodayItem({ stay }) {
-  const { id, status, guests, numNights } = stay;
+  const { id, status, guests, numNights } = stay
 
   const statusToAction = {
     unconfirmed: {
-      action: 'arriving',
-      tag: 'green',
+      action: "arriving",
+      tag: "green",
       button: (
         <Button
           variation='primary'
@@ -45,12 +45,12 @@ function TodayItem({ stay }) {
         </Button>
       ),
     },
-    'checked-in': {
-      action: 'departing',
-      tag: 'blue',
+    "checked-in": {
+      action: "departing",
+      tag: "blue",
       button: <CheckoutButton bookingId={id} />,
     },
-  };
+  }
 
   return (
     <StyledTodayItem>
@@ -63,7 +63,7 @@ function TodayItem({ stay }) {
 
       {statusToAction[status].button}
     </StyledTodayItem>
-  );
+  )
 }
 
-export default TodayItem;
+export default TodayItem
