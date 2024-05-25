@@ -39,7 +39,7 @@ function NewCabinForm() {
   } = useForm()
 
   function onSubmit(data) {
-    mutate(data)
+    mutate({ ...data, image: data.image[0] })
   }
 
   function onError(errors) {
@@ -86,7 +86,7 @@ function NewCabinForm() {
           {...register("discount", {
             required: "This field is required",
             validate: (value) =>
-              value <= getValues().regularPrice ||
+              +value <= +getValues().regularPrice ||
               "Discount should be less than regular price",
           })}
         />
@@ -104,9 +104,12 @@ function NewCabinForm() {
         />
       </FormRow>
 
-      <FormRow>
-        <Label htmlFor='image'>Cabin photo</Label>
-        <FileInput id='image' accept='image/*' />
+      <FormRow label='Cabin photo'>
+        <FileInput
+          id='image'
+          accept='image/*'
+          {...register("image", { required: "This field is required" })}
+        />
       </FormRow>
 
       <FormRow>
