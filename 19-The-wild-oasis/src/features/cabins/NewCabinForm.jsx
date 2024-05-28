@@ -22,6 +22,16 @@ function NewCabinForm({ cabinToEdit = {} }) {
 
   const queryClient = useQueryClient()
 
+  const {
+    register,
+    handleSubmit,
+    reset,
+    getValues,
+    formState: { errors },
+  } = useForm({
+    defaultValues: isEditSession ? editValues : {},
+  })
+
   const { mutate: createCabin, isLoading: isCreating } = useMutation({
     mutationFn: createEditCabin,
     onSuccess: () => {
@@ -32,16 +42,6 @@ function NewCabinForm({ cabinToEdit = {} }) {
     onError: (err) => {
       toast.error(err.message)
     },
-  })
-
-  const {
-    register,
-    handleSubmit,
-    reset,
-    getValues,
-    formState: { errors },
-  } = useForm({
-    defaultValues: isEditSession ? editValues : {},
   })
 
   const { mutate: editCabin, isLoading: isEditing } = useMutation({
