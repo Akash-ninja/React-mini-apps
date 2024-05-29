@@ -22,9 +22,9 @@ function UpdateSettingsForm() {
   if (isLoading) return <Spinner />
 
   function handleUpdate(e, field) {
-    const { value } = e.target
+    const { value, defaultValue } = e.target
 
-    if (!value) return
+    if (!value || value === defaultValue) return
     updateSetting({ [field]: value })
   }
 
