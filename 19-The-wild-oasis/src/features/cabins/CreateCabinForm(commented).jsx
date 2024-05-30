@@ -1,13 +1,13 @@
 import { useForm } from "react-hook-form"
 
 import { useCreateCabin } from "features/cabins/useCreateCabin"
-import FormRow from "ui/FormRow"
-import Input from "ui/Input"
-import Form from "ui/Form"
-import Button from "ui/Button"
-import FileInput from "ui/FileInput"
+import FormRow from "../../ui/FormRow"
+import Input from "../../ui/Input"
+import Form from "../../ui/Form"
+import Button from "../../ui/Button"
+import FileInput from "../../ui/FileInput"
 import { useEditCabin } from "./useEditCabin"
-import { Textarea } from "ui/Textarea"
+import { Textarea } from "../../ui/Textarea"
 
 // We use react-hook-form to make working with complex and REAL-WORLD forms a lot easier. It handles stuff like user validation and errors. manages the form state for us, etc
 // Validating the user’s data passed through the form is a crucial responsibility for a developer.
