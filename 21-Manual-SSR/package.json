@@ -1,0 +1,11 @@
+{
+  "name": "21-manual-ssr",
+  "version": "1.0.0",
+  "main": "starter.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Akash",
+  "license": "ISC",
+  "description": ""
+}
