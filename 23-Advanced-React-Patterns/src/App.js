@@ -47,7 +47,7 @@ function ProductItem({ product }) {
   )
 }
 
-function List({ title, items = [] }) {
+function List({ title, items = [], render }) {
   const [isOpen, setIsOpen] = useState(true)
   const [isCollapsed, setIsCollapsed] = useState(true)
 
@@ -68,13 +68,7 @@ function List({ title, items = [] }) {
         </button>
       </div>
 
-      {isOpen && (
-        <ul className='list'>
-          {displayItems.map((item) => (
-            <ProductItem key={item.productName} product={item} />
-          ))}
-        </ul>
-      )}
+      {isOpen && <ul className='list'>{displayItems.map(render)}</ul>}
 
       <button onClick={() => setIsCollapsed((collapse) => !collapse)}>
         {isCollapsed ? `Show all ${items.length}` : "Show less"}
@@ -88,8 +82,27 @@ export default function App() {
     <div>
       <h1>Render Props Demo</h1>
 
+      {/* Render props passed */}
       <div className='col-2'>
-        <List title='Products' items={products} />
+        <List
+          title='Products'
+          items={products}
+          render={(product) => (
+            <ProductItem key={product.productName} product={product} />
+          )}
+        />
+
+        <List
+          title='Companies'
+          items={companies}
+          render={(company) => (
+            <CompanyItem
+              key={company.companyName}
+              defaultVisibility={false}
+              company={company}
+            />
+          )}
+        />
       </div>
     </div>
   )
