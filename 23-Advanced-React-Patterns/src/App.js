@@ -17,6 +17,26 @@ const companies = Array.from({ length: 20 }, () => {
   }
 })
 
+function CompanyItem({ company, defaultVisibility }) {
+  const [isVisible, setIsVisible] = useState(defaultVisibility)
+
+  return (
+    <li
+      className='company'
+      onMouseEnter={() => setIsVisible(true)}
+      onMouseLeave={() => setIsVisible(false)}
+    >
+      <p className='company-name'>{company.companyName}</p>
+      {isVisible && (
+        <p className='company-phrase'>
+          <strong>About:</strong>
+          {company.phrase}
+        </p>
+      )}
+    </li>
+  )
+}
+
 function ProductItem({ product }) {
   return (
     <li className='product'>
@@ -29,7 +49,7 @@ function ProductItem({ product }) {
 
 function List({ title, items = [] }) {
   const [isOpen, setIsOpen] = useState(true)
-  const [isCollapsed, setIsCollapsed] = useState(false)
+  const [isCollapsed, setIsCollapsed] = useState(true)
 
   const displayItems = isCollapsed ? items.slice(0, 3) : items
 

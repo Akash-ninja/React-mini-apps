@@ -95,3 +95,18 @@ h1 {
     border-radius: 7px;
     border: 1px solid #ddd;
 }
+
+.company {
+    padding-bottom: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+.company-name {
+    font-weight: 700;
+}
+
+.company-phrase {
+    margin-top: 6px;
+    font-size: 14px;
+    color: rebeccapurple;
+}
