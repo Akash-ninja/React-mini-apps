@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { UsersIcon } from "@heroicons/react/24/solid"
+import Image from "next/image"
 
 function CabinCard({ cabin }) {
   const { id, name, maxCapacity, regularPrice, discount, image } = cabin
@@ -7,10 +8,11 @@ function CabinCard({ cabin }) {
   return (
     <div className='flex border-primary-800 border'>
       <div className='flex-1 relative'>
-        <img
+        <Image
+          fill
           src={image}
           alt={`Cabin ${name}`}
-          className='border-r border-primary-800'
+          className='object-cover border-r border-primary-800'
         />
       </div>
       <div className='flex-grow'>
