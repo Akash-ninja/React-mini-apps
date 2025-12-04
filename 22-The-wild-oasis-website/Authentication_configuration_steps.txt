@@ -1,0 +1,17 @@
+Steps for Next Auth (or Auth.js)
+---------------------------------
+1. Add env variables (url, secret) for next auth 
+    - to add secret, generate it from vercel site
+
+2. Go to -> Google Developer Console
+    - create project with the project name
+    - add "test users" and "logo" (optional)
+    - create OAuth client ID 
+        - add Redirect URI as => {domain}/{callback_url from auth.js}
+        - copy "client Id" and "secret id" and paste it in env file
+
+3. Install next-auth
+
+4. Create auth.js in _lib folder and config it for Google provider
+
+5. create route handlers in - api/auth/[...nextatuh]/route.js and export GET and POST methods there 
