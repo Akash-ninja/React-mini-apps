@@ -6,6 +6,31 @@ import { auth, signIn, signOut } from "./auth"
 import { supabase } from "./supabase"
 import { getBookings } from "./data-service"
 
+export async function createBooking(bookingData, formData) {
+  const session = await auth()
+  if (!session) throw new Error("Unauthorized to perform this action")
+
+  const formDataObj = Object.fromEntries(formData)
+
+  const newBooking = {
+    ...bookingData,
+    guestId: session.user.guestId,
+    numGuests: Number(formDataObj.numGuests),
+    observations: formDataObj.observations.slice(0, 1000),
+    extrasPrice: 0,
+    totalPrice: bookingData.cabinPrice,
+    isPaid: false,
+    hasBreakfast: false,
+    status: "unconfirmed",
+  }
+
+  const { error } = await supabase.from("bookings").insert([newBooking])
+
+  if (error) {
+    throw new Error("Booking could not be created")
+  }
+}
+
 export async function updateReservation(formData) {
   const bookingId = Number(formData.get("bookingId"))
 
